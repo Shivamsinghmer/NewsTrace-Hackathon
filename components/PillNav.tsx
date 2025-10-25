@@ -230,7 +230,7 @@ const PillNav: React.FC<PillNavProps> = ({
             href={items[0].href}
             aria-label="Home"
             onMouseEnter={handleLogoEnter}
-            ref={(el) => (logoRef.current = el)}
+            ref={(el) => { logoRef.current = el; }}
             className="rounded-full inline-flex items-center justify-center overflow-hidden"
             style={{ height: 'var(--nav-h)', background: 'var(--base, #000)', padding: '0 12px 0 8px' }}
           >
@@ -244,7 +244,7 @@ const PillNav: React.FC<PillNavProps> = ({
             href={items?.[0]?.href || '#'}
             aria-label="Home"
             onMouseEnter={handleLogoEnter}
-            ref={(el) => (logoRef.current = el)}
+            ref={(el) => { logoRef.current = el; }}
             className="rounded-full inline-flex items-center justify-center overflow-hidden"
             style={{ height: 'var(--nav-h)', background: 'var(--base, #000)', padding: '0 12px 0 8px' }}
           >

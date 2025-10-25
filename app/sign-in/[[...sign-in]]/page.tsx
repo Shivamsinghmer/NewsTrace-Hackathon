@@ -1,4 +1,5 @@
 import { SignIn } from '@clerk/nextjs'
+import { dark } from '@clerk/themes'
 
 export default function Page() {
   return (
@@ -20,7 +21,7 @@ export default function Page() {
             dividerLine: 'bg-slate-300',
             dividerText: 'text-slate-400',
           },
-          baseTheme: 'dark',
+          baseTheme: dark,
         }}
       />
     </div>

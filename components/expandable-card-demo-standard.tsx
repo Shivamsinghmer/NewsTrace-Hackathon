@@ -3,8 +3,23 @@ import React, { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 
-export default function ExpandableCardDemo({ cards }) {
-  const [active, setActive] = useState(null);
+interface Card {
+  "Full Name": string;
+  Designation: string;
+  "Primary Beat": string;
+  "Secondary Beat"?: string;
+  "Twitter Handle"?: string;
+  "Follower Count"?: string;
+  "Geographic Coverage"?: string;
+  "Contact Status"?: string;
+  "Key Credentials Summary"?: string;
+  "Notable Previous Organizations"?: string;
+  Awards?: string;
+  error?: boolean;
+}
+
+export default function ExpandableCardDemo({ cards }: { cards: Card[] }) {
+  const [active, setActive] = useState<Card | null>(null);
   const ref = useRef<HTMLDivElement>(null);
   const id = useId();
 
@@ -14,7 +29,7 @@ export default function ExpandableCardDemo({ cards }) {
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setActive(false);
+        setActive(null);
       }
     }
 
@@ -26,7 +41,7 @@ export default function ExpandableCardDemo({ cards }) {
 
   useOutsideClick(ref, () => setActive(null));
 
-  const handleContactClick = (handle: string) => {
+  const handleContactClick = (handle: string | undefined) => {
     if (!handle) return;
     const url = handle.startsWith("@") ? `https://twitter.com/${handle.slice(1)}` : `https://twitter.com/${handle}`;
     window.open(url, "_blank");

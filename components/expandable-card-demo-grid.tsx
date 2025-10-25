@@ -28,7 +28,11 @@ export default function ExpandableCardDemo() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [active]);
 
-  useOutsideClick(ref, () => setActive(null));
+  useEffect(() => {
+    if (ref.current) {
+      useOutsideClick(ref, () => setActive(null));
+    }
+  }, [ref, setActive]);
 
   return (
     <>

@@ -39,6 +39,32 @@ const animationVariants = {
     animate: { opacity: 1 },
     exit: { opacity: 0 },
   },
+  "from-top": {
+    initial: { y: -20, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+    exit: { y: -20, opacity: 0 },
+  },
+  "from-left": {
+    initial: { x: -20, opacity: 0 },
+    animate: { x: 0, opacity: 1 },
+    exit: { x: -20, opacity: 0 },
+  },
+  "from-right": {
+    initial: { x: 20, opacity: 0 },
+    animate: { x: 0, opacity: 1 },
+    exit: { x: 20, opacity: 0 },
+  },
+
+  "top-in-bottom-out": {
+    initial: { y: -20, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+    exit: { y: 20, opacity: 0 },
+  },
+  "left-in-right-out": {
+    initial: { x: -20, opacity: 0 },
+    animate: { x: 0, opacity: 1 },
+    exit: { x: 20, opacity: 0 },
+  },
 }
 
 export function HeroVideoDialog({

@@ -7,9 +7,24 @@ import { unparse } from "papaparse";
 
 function ResultsPage() {
   const queryStore = useQueryStore();
-  const journalists = useDataStore().getData() || [];
+  const journalistsData = useDataStore().getData() || [];
+
+  const cards = journalistsData.map(journalist => ({
+    "Full Name": journalist.fullName || "N/A",
+    Designation: journalist.designation || "N/A",
+    "Primary Beat": journalist.primaryBeat || "N/A",
+    "Secondary Beat": journalist.secondaryBeat,
+    "Twitter Handle": journalist.twitterHandle,
+    "Follower Count": journalist.followerCount,
+    "Geographic Coverage": journalist.geographicCoverage,
+    "Contact Status": journalist.contactStatus,
+    "Key Credentials Summary": journalist.keyCredentialsSummary,
+    "Notable Previous Organizations": journalist.notablePreviousOrganizations,
+    Awards: journalist.awards,
+  }));
+
   const handleDownload = () => {
-    const csv = unparse(journalists);
+    const csv = unparse(journalistsData);
     const blob = new Blob([csv], { type: "text/csv" });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
@@ -38,12 +53,12 @@ function ResultsPage() {
 
       {/* Results section */}
       <section className="flex-1">
-        {journalists.length === 0 ? (
+        {cards.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-gray-400 text-lg">No journalists found.</p>
           </div>
         ) : (
-          <ExpandableCardDemo cards={journalists} />
+          <ExpandableCardDemo cards={cards} />
         )}
       </section>
 
