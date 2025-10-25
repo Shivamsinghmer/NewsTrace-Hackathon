@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import {useDataStore, useQueryStore} from "../../store/store";
+import { useDataStore, useQueryStore } from "../../store/store";
 import { useState } from "react";
 
 function Page() {
@@ -23,19 +23,21 @@ function Page() {
       // Store the received data in Zustand
       dataStore.setData(res.data);
       console.log(dataStore.getData());
-      
+
       console.log("Webhook Data:", res.data); // log data
 
       // Redirect to results page after data is saved
       router.push("/search/results");
     } catch (err) {
-      console.error("Error:", (err as { response?: { status?: number } })?.response?.status || (err as Error).message);
+      console.error(
+        "Error:",
+        (err as { response?: { status?: number } })?.response?.status ||
+          (err as Error).message
+      );
     } finally {
       setLoading(false); // stop loader
     }
   };
-
-  
 
   return (
     <section className="max-h-screen bg-gradient-to-r from-black via-gray-900   to-black text-white">
@@ -86,14 +88,39 @@ function Page() {
                 )}
               </button>
             </div>
-            <p className="mt-4 text-sm text-gray-400">
-              Please wait, it could take upto 2 minute to process the request.
-            </p>
+            {!loading && (
+              <p className="mt-4 text-md text-gray-400">
+                Please enter the full outlet name. Ex: The Times of India.
+              </p>
+            )}
+
+            {loading && (
+              <p className="mt-4 text-md text-gray-400">
+                Please wait, it could take upto 2 minute to process the request.
+              </p>
+            )}
             <p className="mt-4 text-sm text-gray-400">
               Example:{" "}
-              <span className="text-green-400 cursor-pointer hover:underline" onClick={() => queryStore.setQuery("The Indian Express")}>The Indian Express</span>,{" "}
-              <span className="text-green-400 cursor-pointer hover:underline" onClick={() => queryStore.setQuery("Reuters")}>Reuters</span>, or{" "}
-              <span className="text-green-400 cursor-pointer hover:underline" onClick={() => queryStore.setQuery("CNBC")}>CNBC</span>
+              <span
+                className="text-green-400 cursor-pointer hover:underline"
+                onClick={() => queryStore.setQuery("The Indian Express")}
+              >
+                The Indian Express
+              </span>
+              ,{" "}
+              <span
+                className="text-green-400 cursor-pointer hover:underline"
+                onClick={() => queryStore.setQuery("Reuters")}
+              >
+                Reuters
+              </span>
+              , or{" "}
+              <span
+                className="text-green-400 cursor-pointer hover:underline"
+                onClick={() => queryStore.setQuery("CNBC")}
+              >
+                CNBC
+              </span>
             </p>
           </div>
 
@@ -119,8 +146,8 @@ function Page() {
 
         <footer className="mt-20 text-gray-500 text-sm">
           Powered by{" "}
-          <span className="text-green-400 font-semibold">NewsTrace</span> •
-          Data you can trust.
+          <span className="text-green-400 font-semibold">NewsTrace</span> • Data
+          you can trust.
         </footer>
       </main>
     </section>
