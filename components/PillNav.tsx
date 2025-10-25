@@ -11,6 +11,7 @@ export type PillNavItem = {
 };
 
 export interface PillNavProps {
+  text?: string;
   logo: string;
   logoAlt?: string;
   items: PillNavItem[];
@@ -26,6 +27,7 @@ export interface PillNavProps {
 }
 
 const PillNav: React.FC<PillNavProps> = ({
+  text = 'NewsTrace',
   logo,
   logoAlt = 'Logo',
   items,
@@ -50,9 +52,11 @@ const PillNav: React.FC<PillNavProps> = ({
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const navItemsRef = useRef<HTMLDivElement | null>(null);
   const logoRef = useRef<HTMLAnchorElement | null>(null);
+  const mounted = useRef(false);
 
   // Layout and animation setup
   useEffect(() => {
+    mounted.current = true;
     const layout = () => {
       circleRefs.current.forEach((circle) => {
         if (!circle?.parentElement) return;
@@ -168,7 +172,7 @@ const PillNav: React.FC<PillNavProps> = ({
         gsap.set(menu, { visibility: 'visible' });
         gsap.fromTo(menu, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease });
       } else {
-        gsap.to(menu, { opacity: 0, y: 10, duration: 0.2, ease, onComplete: () => gsap.set(menu, { visibility: 'hidden' }) });
+        gsap.to(menu, { opacity: 0, y: 10, duration: 0.2, ease, onComplete: () => { gsap.set(menu, { visibility: 'hidden' }); } });
       }
     }
 
@@ -196,6 +200,23 @@ const PillNav: React.FC<PillNavProps> = ({
     ['--pill-gap']: '3px',
   } as React.CSSProperties;
 
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop,
+          behavior: 'smooth',
+        });
+      }
+    }
+    if (mounted.current) {
+      setIsMobileMenuOpen(false);
+    }
+  };
+
   return (
     <div className="absolute top-[1em] z-[1000] w-full left-0 md:w-auto md:left-auto">
       <nav
@@ -203,17 +224,20 @@ const PillNav: React.FC<PillNavProps> = ({
         aria-label="Primary"
         style={cssVars}
       >
-        {/* Logo */}
+        {/* Logo with text */}
         {isRouterLink(items?.[0]?.href) ? (
           <Link
             href={items[0].href}
             aria-label="Home"
             onMouseEnter={handleLogoEnter}
             ref={(el) => (logoRef.current = el)}
-            className="rounded-full p-2 inline-flex items-center justify-center overflow-hidden"
-            style={{ width: 'var(--nav-h)', height: 'var(--nav-h)', background: 'var(--base, #000)' }}
+            className="rounded-full inline-flex items-center justify-center overflow-hidden"
+            style={{ height: 'var(--nav-h)', background: 'var(--base, #000)', padding: '0 12px 0 8px' }}
           >
-            <img src={logo} alt={logoAlt} ref={logoImgRef} className="w-full h-full object-cover block" />
+            <img src={logo} alt={logoAlt} ref={logoImgRef} className="w-[28px] h-[28px] object-cover block rounded-full" />
+            <span className="ml-2 text-[16px] font-semibold tracking-wide" style={{ color: 'var(--pill-bg, #fff)' }}>
+              {text}
+            </span>
           </Link>
         ) : (
           <a
@@ -221,10 +245,13 @@ const PillNav: React.FC<PillNavProps> = ({
             aria-label="Home"
             onMouseEnter={handleLogoEnter}
             ref={(el) => (logoRef.current = el)}
-            className="rounded-full p-2 inline-flex items-center justify-center overflow-hidden"
-            style={{ width: 'var(--nav-h)', height: 'var(--nav-h)', background: 'var(--base, #000)' }}
+            className="rounded-full inline-flex items-center justify-center overflow-hidden"
+            style={{ height: 'var(--nav-h)', background: 'var(--base, #000)', padding: '0 12px 0 8px' }}
           >
-            <img src={logo} alt={logoAlt} ref={logoImgRef} className="w-full h-full object-cover block" />
+            <img src={logo} alt={logoAlt} ref={logoImgRef} className="w-[28px] h-[28px] object-cover block rounded-full" />
+            <span className="ml-2 text-[16px] font-semibold tracking-wide" style={{ color: 'var(--pill-bg, #fff)' }}>
+              {text}
+            </span>
           </a>
         )}
 
@@ -239,7 +266,7 @@ const PillNav: React.FC<PillNavProps> = ({
             className="list-none flex items-stretch m-0 p-[3px] h-full"
             style={{ gap: 'var(--pill-gap)' }}
           >
-            {items.map((item, i) => {
+            {items.slice(1).map((item, i) => {
               const isActive = activeHref === item.href;
               const pillStyle: React.CSSProperties = {
                 background: 'var(--pill-bg, #fff)',
@@ -253,7 +280,9 @@ const PillNav: React.FC<PillNavProps> = ({
                     className="hover-circle absolute left-1/2 bottom-0 rounded-full z-[1] block pointer-events-none"
                     style={{ background: 'var(--base, #000)', willChange: 'transform' }}
                     aria-hidden="true"
-                    ref={(el) => (circleRefs.current[i] = el)}
+                    ref={(el) => {
+                      circleRefs.current[i] = el;
+                    }}
                   />
                   <span className="label-stack relative inline-block leading-[1] z-[2]">
                     <span className="pill-label relative z-[2] inline-block leading-[1]" style={{ willChange: 'transform' }}>
@@ -276,7 +305,7 @@ const PillNav: React.FC<PillNavProps> = ({
 
               return (
                 <li key={item.href} role="none" className="flex h-full">
-                  <Link href={item.href} aria-label={item.ariaLabel || item.label}>
+                  <Link href={item.href} onClick={(e) => handleScroll(e, item.href)} aria-label={item.ariaLabel || item.label}>
                     <span
                       role="menuitem"
                       className={basePillClasses}
@@ -314,7 +343,7 @@ const PillNav: React.FC<PillNavProps> = ({
         style={{ ...cssVars, background: 'var(--base, #f0f0f0)' }}
       >
         <ul className="list-none m-0 p-[3px] flex flex-col gap-[3px]">
-          {items.map((item) => {
+          {items.slice(1).map((item) => {
             const defaultStyle: React.CSSProperties = { background: 'var(--pill-bg, #fff)', color: 'var(--pill-text, #fff)' };
             const hoverIn = (e: React.MouseEvent<HTMLAnchorElement>) => {
               e.currentTarget.style.background = 'var(--base)';
@@ -328,7 +357,7 @@ const PillNav: React.FC<PillNavProps> = ({
 
             return (
               <li key={item.href}>
-                <Link href={item.href} onClick={() => setIsMobileMenuOpen(false)}>
+                <Link href={item.href} onClick={(e) => handleScroll(e, item.href)}>
                   <span className={linkClasses} style={defaultStyle} onMouseEnter={hoverIn} onMouseLeave={hoverOut}>
                     {item.label}
                   </span>

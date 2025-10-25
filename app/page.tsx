@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+
 import Galaxy from "@/components/Galaxy";
 import ClickSpark from "@/components/ClickSpark";
-import PillNav from "@/components/PillNav";
 import { ArrowBigDownIcon } from "lucide-react";
 import { CrowdCanvas, Skiper39 } from "@/components/ui/skiper-ui/skiper39";
 import {
@@ -15,6 +15,7 @@ import {
   VideoPlayerMuteButton,
 } from "@/components/ui/skiper-ui/skiper67";
 import { HeroVideoDialog } from "@/components/ui/hero-video-dialog";
+import Link from "next/link";
 
 export default function Home() {
   const [visible, setVisible] = useState(false);
@@ -46,25 +47,6 @@ export default function Home() {
         />
 
         {/* Sticky Nav with subtle blur */}
-        <div className="fixed top-0 left-0 right-0 z-20 flex justify-center pt-6">
-          <PillNav
-            logo="reporter_7417853.png"
-            logoAlt="Company Logo"
-            items={[
-              { label: "Home", href: "/" },
-              { label: "About", href: "/about" },
-              { label: "Services", href: "/services" },
-              { label: "Contact", href: "/contact" },
-            ]}
-            activeHref="/"
-            className="custom-nav backdrop-blur-lg bg-black/20 border border-white/10 rounded-full shadow-2xl"
-            ease="power2.easeOut"
-            baseColor="#000000"
-            pillColor="#ffffff"
-            hoveredPillTextColor="#ffffff"
-            pillTextColor="#000000"
-          />
-        </div>
 
         {/* Hero Section */}
         <section
@@ -107,12 +89,13 @@ export default function Home() {
 
           {/* CTA Buttons with hover lift */}
           <div className="flex flex-col sm:flex-row items-center gap-5 mt-10 text-sm">
-            <button
+            <Link
+              href="/search"
               className="px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 rounded-full shadow-xl hover:shadow-green-500/40 hover:-translate-y-1 transition-all"
               aria-label="Get Started"
             >
               Get Started
-            </button>
+            </Link>
             <button
               className="flex items-center gap-3 bg-white/10 border border-white/20 rounded-full px-6 py-3 hover:bg-white/20 hover:border-white/30 hover:-translate-y-1 transition-all"
               aria-label="Learn More"
@@ -173,9 +156,12 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="w-screen h-1 bg-white"></div>
+
       {/* About section */}
-      <section className="min-h-screen w-full bg-gradient-to-b from-black via-gray-900 to-black text-white px-6 py-20 md:py-32">
+      <section
+        
+        className="min-h-screen w-full bg-gradient-to-b from-black via-gray-900 to-black text-white px-6 py-20 md:py-32"
+      >
         <div className="max-w-6xl mx-auto">
           {/* Heading */}
           <h2 className="text-3xl md:text-4xl font-extrabold text-center bg-gradient-to-r from-white via-green-300 to-white bg-clip-text text-transparent">
@@ -295,9 +281,11 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="w-screen h-1 bg-white"></div>
+
       {/* Features section */}
-      <section className="relative min-h-screen w-full bg-gradient-to-b from-black via-gray-900 to-black text-white px-6 py-20 md:py-32 overflow-hidden">
+      <section
+        className="relative min-h-screen w-full bg-gradient-to-b from-black via-gray-900 to-black text-white px-6 py-20 md:py-32 overflow-hidden"
+      >
         {/* Animated Gradient Orb */}
         <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-green-500/20 via-transparent to-violet-500/20 blur-3xl animate-pulse" />
 
@@ -313,13 +301,14 @@ export default function Home() {
           </p>
 
           {/* Feature Cards */}
-          <section className="w-full bg-gradient-to-b from-black via-gray-900 to-black text-white px-6 py-16 md:py-20">
-            <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start gap-10">
-              {/* Feature Card - 1/3 width */}
-              <div className="w-full md:w-1/3 group bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:border-green-400/50 hover:-translate-y-1 transition-all duration-300 shadow-md">
-                <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-violet-500/20 to-violet-500/5 border border-violet-400/30 mb-4">
+          {/* Feature & Trust Section */}
+          <section className="text-white px-6 py-20 md:py-32">
+            <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+              {/* Left – Feature Card */}
+              <div className="w-full md:w-1/3 group bg-white/5 backdrop-blur-md border flex flex-col items-center justify-center border-white/10 rounded-3xl p-8 hover:border-green-400/50 hover:-translate-y-2 transition-all duration-300 shadow-lg">
+                <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500/20 to-violet-500/5 border border-violet-400/30 mb-6">
                   <svg
-                    className="w-6 h-6 text-violet-300"
+                    className="w-8 h-8 text-violet-300"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 28 28"
@@ -333,44 +322,45 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-1">
+                <h3 className="text-xl font-bold text-white mb-2">
                   Real-Time Discovery
                 </h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
+                <p className="text-slate-300 leading-relaxed">
                   Autonomous crawler surfaces journalist profiles and article
                   metadata the moment they hit the web.
                 </p>
               </div>
 
-              {/* Trust Text - 2/3 width */}
-              <div className="w-full md:w-2/3 text-center md:text-left flex flex-col items-center justify-center">
-                <p className="mt-6 bg-gradient-to-r from-slate-800 via-[#4D6EA3] to-slate-800 text-transparent bg-clip-text text-2xl md:text-3xl font-bold tracking-tight">
+              {/* Right – Trust Block */}
+              <div className="w-full h-full md:w-3/5 flex flex-col items-center md:items-start text-center md:text-left">
+                <p className="bg-gradient-to-r from-slate-800 via-[#4D6EA3] to-slate-800 text-transparent bg-clip-text text-3xl md:text-4xl font-extrabold tracking-tight">
                   Trusted by the world’s leading newsrooms
                 </p>
-                <div className="flex items-center justify-center gap-8 mt-10 px-4">
+                {/* Single-line logo strip */}
+                <div className="flex h-26 items-center justify-center md:justify-start gap-6 mt-5 w-full overflow-x-auto">
                   {/* BBC */}
                   <img
                     src="/BBC.png"
                     alt="BBC"
-                    className="h-12 md:h-16 aspect-video invert object-contain filter grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
+                    className="h-12 md:h-16 aspect-video invert object-contain filter grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 shrink-0"
                   />
                   {/* Times of India */}
                   <img
                     src="/TimesOfIndia.jpg"
                     alt="Times of India"
-                    className="h-12 md:h-16 aspect-video object-contain filter grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
+                    className="h-12 md:h-16 aspect-video object-contain filter grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 shrink-0"
                   />
                   {/* The Hindu */}
                   <img
                     src="/hindu.png"
                     alt="The Hindu"
-                    className="h-12 md:h-16 aspect-video invert object-contain filter grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
+                    className="h-12 md:h-16 aspect-video invert object-contain filter grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 shrink-0"
                   />
                   {/* CNN */}
                   <img
                     src="/cnn.png"
-                    alt="Media Partner"
-                    className="h-12 md:h-16 aspect-video object-contain filter grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
+                    alt="CNN"
+                    className="h-12 md:h-16 aspect-video object-contain filter grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 shrink-0"
                   />
                 </div>
               </div>
@@ -378,9 +368,11 @@ export default function Home() {
           </section>
         </div>
       </section>
-      1<div className="w-screen h-1 bg-white"></div>
+
       {/* Contact Section */}
-      <section className="relative bg-gradient-to-b from-black via-gray-900 to-black min-h-screen w-full text-white overflow-hidden">
+      <section
+        className="relative bg-gradient-to-b from-black via-gray-900 to-black min-h-screen w-full text-white overflow-hidden"
+      >
         {/* Subtle animated grid background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
 
