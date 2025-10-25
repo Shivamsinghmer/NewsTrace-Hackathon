@@ -8,20 +8,22 @@ import { unparse } from "papaparse";
 function ResultsPage() {
   const queryStore = useQueryStore();
   const journalistsData = useDataStore().getData() || [];
+  console.log("Journalists Data:", journalistsData);
 
   const cards = journalistsData.map(journalist => ({
-    "Full Name": journalist.fullName || "N/A",
-    Designation: journalist.designation || "N/A",
-    "Primary Beat": journalist.primaryBeat || "N/A",
-    "Secondary Beat": journalist.secondaryBeat,
-    "Twitter Handle": journalist.twitterHandle,
-    "Follower Count": journalist.followerCount,
-    "Geographic Coverage": journalist.geographicCoverage,
-    "Contact Status": journalist.contactStatus,
-    "Key Credentials Summary": journalist.keyCredentialsSummary,
-    "Notable Previous Organizations": journalist.notablePreviousOrganizations,
-    Awards: journalist.awards,
+    "Full Name": journalist["Full Name"] || "N/A",
+    Designation: journalist.Designation || "N/A",
+    "Primary Beat": journalist["Primary Beat"] || "N/A",
+    "Secondary Beat": journalist["Secondary Beat"] || "N/A",
+    "Twitter Handle": journalist["Twitter Handle"] || "N/A",
+    "Follower Count": journalist["Follower Count"] || "N/A",
+    "Geographic Coverage": journalist["Geographic Coverage"] || "N/A",
+    "Contact Status": journalist["Contact Status"] || "N/A",
+    "Key Credentials Summary": journalist["Key Credentials Summary"] || "N/A",
+    "Notable Previous Organizations": journalist["Notable Previous Organizations"] || "N/A",
+    Awards: journalist.awards || "N/A",
   }));
+  console.log("Cards Data:", cards);
 
   const handleDownload = () => {
     const csv = unparse(journalistsData);
