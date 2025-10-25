@@ -4,7 +4,7 @@
 
 It allows users to search for any media outlet and instantly access publicly available information about journalists — including their names, roles, beats, and social profiles.
 
-The project is built with **Next.js 14**, integrated with **Clerk Authentication** for secure user access, and uses **webhooks** to fetch live journalist data from AI agents.
+The project is built with **Next.js 16**, integrated with **Clerk Authentication** for secure user access, and uses **webhooks** to fetch live journalist data from AI agents.
 
 ---
 
@@ -29,8 +29,8 @@ npm install
 # or
 
 yarn install
-
-⚙️ Environment Variables
+```
+## ⚙️ Environment Variables
 
 Before starting the project, create a .env.local file in the root directory and add the following variables:
 
@@ -38,13 +38,13 @@ bash
 
 Copy code
 
-# Clerk Authentication Keys
+## Clerk Authentication Keys
 
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 
 CLERK_SECRET_KEY=your_clerk_secret_key
 
-# Clerk Redirect URLs
+## Clerk Redirect URLs
 
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
 
@@ -52,17 +52,17 @@ NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/search
 
 NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/search
 
-# Webhook URLs for AI Agent
+## Webhook URLs for AI Agent
 
 NEXT_PUBLIC_WEBHOOK_TEST_URL=https://your-n8n-test-webhook-url
 
 NEXT_PUBLIC_WEBHOOK_PRODUCTION_URL=https://your-n8n-production-webhook-url
 
-⚠️ Important: These variables are required for authentication and data fetching.
+## ⚠️ Important: These variables are required for authentication and data fetching.
 
 Without them, the app will not run properly.
 
-🧠 Features
+### 🧠 Features
 
 🔐 Secure Login using Clerk authentication
 
@@ -82,7 +82,7 @@ Contact / Social links
 
 📱 Fully responsive UI built with Next.js + Tailwind CSS
 
-🧩 Running the Project
+## 🧩 Running the Project
 
 Start the local development server:
 
@@ -92,13 +92,13 @@ Copy code
 
 npm run dev
 
-# or
+##### or
 
 yarn dev
 
 Then open http://localhost:3000 in your browser.
 
-🧭 Project Structure
+### 🧭 Project Structure
 
 bash
 
@@ -120,17 +120,17 @@ Copy code
 
 /lib # Utility and API helper functions
 
-🌐 Deployment
+## 🌐 Deployment
 
 The easiest way to deploy NewsTrace is via Vercel — the creators of Next.js.
 
 You can deploy directly using this link:
 
-👉 Deploy on Vercel
+### 👉 Deploy on Vercel
 
 Make sure to add all the environment variables in your Vercel project settings before deploying.
 
-📚 Learn More
+### 📚 Learn More
 
 Next.js Documentation
 
@@ -138,7 +138,7 @@ Clerk Documentation
 
 Vercel Deployment Guide
 
-💡 About the Project
+### 💡 About the Project
 
 NewsTrace was built to simplify media intelligence.
 
