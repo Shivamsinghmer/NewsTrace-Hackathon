@@ -1,24 +1,24 @@
-\# 📰 NewsTrace
+# 📰 NewsTrace
 
-\*\*NewsTrace\*\* is an AI-powered journalist intelligence and discovery tool.
+**NewsTrace** is an AI-powered journalist intelligence and discovery tool.
 
 It allows users to search for any media outlet and instantly access publicly available information about journalists — including their names, roles, beats, and social profiles.
 
-The project is built with \*\*Next.js 14\*\*, integrated with \*\*Clerk Authentication\*\* for secure user access, and uses \*\*webhooks\*\* to fetch live journalist data from AI agents.
+The project is built with **Next.js 14**, integrated with **Clerk Authentication** for secure user access, and uses **webhooks** to fetch live journalist data from AI agents.
 
-\---
+---
 
-\## 🚀 Getting Started
+## 🚀 Getting Started
 
-\### 1. Clone the Repository
+### 1. Clone the Repository
 
-\`\`\`bash
+```bash
 
 git clone https://github.com/yourusername/newstrace.git
 
 cd newstrace
 
-2\. Install Dependencies
+2. Install Dependencies
 
 bash
 
@@ -26,7 +26,7 @@ Copy code
 
 npm install
 
-\# or
+# or
 
 yarn install
 
@@ -38,25 +38,25 @@ bash
 
 Copy code
 
-\# Clerk Authentication Keys
+# Clerk Authentication Keys
 
-NEXT\_PUBLIC\_CLERK\_PUBLISHABLE\_KEY=your\_clerk\_publishable\_key
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 
-CLERK\_SECRET\_KEY=your\_clerk\_secret\_key
+CLERK_SECRET_KEY=your_clerk_secret_key
 
-\# Clerk Redirect URLs
+# Clerk Redirect URLs
 
-NEXT\_PUBLIC\_CLERK\_SIGN\_IN\_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
 
-NEXT\_PUBLIC\_CLERK\_SIGN\_IN\_FALLBACK\_REDIRECT\_URL=/search
+NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/search
 
-NEXT\_PUBLIC\_CLERK\_SIGN\_UP\_FALLBACK\_REDIRECT\_URL=/search
+NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/search
 
-\# Webhook URLs for AI Agent
+# Webhook URLs for AI Agent
 
-NEXT\_PUBLIC\_WEBHOOK\_TEST\_URL=https://your-n8n-test-webhook-url
+NEXT_PUBLIC_WEBHOOK_TEST_URL=https://your-n8n-test-webhook-url
 
-NEXT\_PUBLIC\_WEBHOOK\_PRODUCTION\_URL=https://your-n8n-production-webhook-url
+NEXT_PUBLIC_WEBHOOK_PRODUCTION_URL=https://your-n8n-production-webhook-url
 
 ⚠️ Important: These variables are required for authentication and data fetching.
 
@@ -92,7 +92,7 @@ Copy code
 
 npm run dev
 
-\# or
+# or
 
 yarn dev
 
