@@ -13,18 +13,17 @@ export const useQueryStore = create<OutletQuery>((set, get) => ({
 }));
 
 interface Journalist {
-  rank?: number;
-  fullName?: string;
-  designation?: string;
-  primaryBeat?: string;
-  secondaryBeat?: string;
-  twitterHandle?: string;
-  followerCount?: string;
-  keyCredentialsSummary?: string;
-  notablePreviousOrganizations?: string;
-  awards?: string;
-  geographicCoverage?: string;
-  contactStatus?: string;
+  "Full Name"?: string;
+  Designation?: string;
+  "Primary Beat"?: string;
+  "Secondary Beat"?: string;
+  "Twitter Handle"?: string;
+  "Follower Count"?: string;
+  "Geographic Coverage"?: string;
+  "Contact Status"?: string;
+  "Key Credentials Summary"?: string;
+  "Notable Previous Organizations"?: string;
+  Awards?: string;
 }
 
 interface DataState {

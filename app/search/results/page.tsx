@@ -21,7 +21,7 @@ function ResultsPage() {
     "Contact Status": journalist["Contact Status"] || "N/A",
     "Key Credentials Summary": journalist["Key Credentials Summary"] || "N/A",
     "Notable Previous Organizations": journalist["Notable Previous Organizations"] || "N/A",
-    Awards: journalist.awards || "N/A",
+    Awards: journalist.Awards || "N/A",
   }));
   console.log("Cards Data:", cards);
 

@@ -87,7 +87,7 @@ function Page() {
               </button>
             </div>
             <p className="mt-4 text-sm text-gray-400">
-              Please wait, it could take upto 1 minute to process the request.
+              Please wait, it could take upto 2 minute to process the request.
             </p>
             <p className="mt-4 text-sm text-gray-400">
               Example:{" "}
